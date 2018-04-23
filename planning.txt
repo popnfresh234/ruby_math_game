@@ -1,0 +1,17 @@
+Clases:
+
+Game
+Question
+Player
+
+Game:
+    State: Players
+    Behavior: asks player question, runs game loop
+
+Player:
+    State: Number of lives
+    Behavior: Reduce Lives, getters
+
+Question:
+    State: first random numnber, second random number
+    Behavior: checks if sum of two numbers == input, getters
