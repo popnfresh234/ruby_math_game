@@ -7,9 +7,10 @@ class Question
     end
 
     def correct?(input)
-        if @first_number + @second_number == input
-            return true
-        end
-        return false
+        @first_number + @second_number == input
+    end
+
+    def get_formatted_question
+        "What is #{@first_number} + #{@second_number}?"
     end
 end

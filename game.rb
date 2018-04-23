@@ -9,13 +9,11 @@ class Game
         p2 = Player.new(p2_name)
         @players << p1
         @players << p2
-        puts "Lets play!"
-        puts "---- First Turn ----"
     end
 
     def turn(player_a, player_b)
         question = Question.new
-        print "#{player_a.name}:  What is #{question.first_number} + #{question.second_number}? "
+        print "#{player_a.name}: " + question.get_formatted_question
         guess = STDIN.gets.chomp.to_i
         if(!question.correct?(guess))
             puts "#{player_a.name}: Seriously? NO!"
@@ -32,7 +30,8 @@ class Game
     end
 
     def run_game()
-
+        puts "Lets play!"
+        puts "---- First Turn ----"
         loop do
             turn(@players[0], @players[1])
             break if @players[0].lives == 0
