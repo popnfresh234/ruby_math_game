@@ -9,7 +9,7 @@ class Game
         p2 = Player.new(p2_name)
         @players << p1
         @players << p2
-        puts "Lets play MATH_GAME!!!"
+        puts "Lets play!"
         puts "---- First Turn ----"
     end
 
