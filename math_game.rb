@@ -1,10 +1,12 @@
 require('./question')
 require('./player')
+
 class Game
-    def initialize()
+    
+    def initialize(p1_name, p2_name)
         @players = []
-        p1 = Player.new('Player One')
-        p2 = Player.new('Player Two')
+        p1 = Player.new(p1_name)
+        p2 = Player.new(p2_name)
         @players << p1
         @players << p2
         puts "Lets play MATH_GAME!!!"
