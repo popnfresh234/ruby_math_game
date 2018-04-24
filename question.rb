@@ -11,6 +11,6 @@ class Question
     end
 
     def get_formatted_question
-        "What is #{@first_number} + #{@second_number}?"
+        "What is #{@first_number} + #{@second_number}? "
     end
 end

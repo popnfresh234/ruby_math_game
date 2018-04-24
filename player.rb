@@ -9,7 +9,7 @@ class Player
         @lives -= 1;
     end
 
-    def to_s
-        "Lives: #{@lives}"
+    def isDead?
+        @lives == 0
     end
 end
