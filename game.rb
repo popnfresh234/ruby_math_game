@@ -1,50 +1,57 @@
 require('./question')
-require('./player')
+
 
 class Game
     
-    def initialize(p1_name, p2_name)
-        @players = []
-        p1 = Player.new(p1_name)
-        p2 = Player.new(p2_name)
-        @players << p1
-        @players << p2
+    def initialize(players)
+        @loser = false;
+        @players = players
+        @num_players = players.length
     end
 
-    def turn(player_a, player_b)
+    def turn(player_a)
         question = Question.new
         print "#{player_a.name}: " + question.get_formatted_question
         guess = STDIN.gets.chomp.to_i
         if(!question.correct?(guess))
             puts "#{player_a.name}: Seriously? NO!"
             player_a.reduce_lives
-            puts display_score(player_a, player_b);
+            if(player_a.lives == 0)
+                @loser = true
+            end
+            puts display_score(player_a);
         else
             puts "#{player_a.name}: YES! you are correct."
-            puts display_score(player_a, player_b)
+            puts display_score(player_a)
         end
     end
 
-    def display_score(player_a, player_b)
-        "#{player_a.name} #{player_a.lives}/3 vs #{player_b.name} #{player_b.lives}/3"
+    def display_score(player_a)
+        "#{player_a.name} #{player_a.lives}/3"
     end
 
     def run_game()
         puts "Lets play!"
         puts "---- First Turn ----"
-        loop do
-            turn(@players[0], @players[1])
-            break if @players[0].lives == 0
-            puts "---- New Turn ----"
-            turn(@players[1], @players[0])
-            break if (@players[1].lives == 0)
-            puts "---- New Turn ----"
+
+            loop do
+            i = 0
+            break if @loser
+            while i < @num_players do
+                break if @loser 
+                turn(@players[i])
+                puts "---- New Turn ----"
+                i+= 1
+            end
         end
+            
+
+
+
         
         @players.sort_by! do |player|
             -player.lives
         end
-        
         puts "----   -----   ----"
         puts "#{@players[0].name} wins with a score of #{@players[0].lives}/3"
         puts "---- GAME OVER ----"

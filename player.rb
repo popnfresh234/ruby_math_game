@@ -8,4 +8,8 @@ class Player
     def reduce_lives
         @lives -= 1;
     end
+
+    def to_s
+        "Lives: #{@lives}"
+    end
 end
